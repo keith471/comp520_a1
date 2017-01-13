@@ -1,0 +1,24 @@
+// Second correct example program
+// Cash register at an ice cream stand
+
+var numScoops: int;
+var price_per_scoop: float;
+
+price_per_scoop = 1.25
+
+print "How many scoops of ice cream cones would you like?";
+read numScoops;
+
+if numScoops then
+    // they want at least one scoop
+    print "Good choice!";
+
+else
+    // they don't want any ice cream!
+    print "Your loss!";
+
+endif
+
+total = numScoops * price_per_scoop;
+print "Your total is";
+print total;

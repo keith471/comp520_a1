@@ -28,7 +28,8 @@ void yyerror(const char *s);
 %token tTIMES tDIVIDE tPLUS tMINUS
 %token tASSIGN
 %token tLPAREN tRPAREN
-%token tIDENTIFIER
+%token <sval> tIDENTIFIER
+%token tENDL
 
 // define the "terminal symbols" and associate each with a field of the union:
 %token <ival> tINT
@@ -53,11 +54,53 @@ stmts:
     ;
 
 dcl:
-    tFLOAT  { printf("found a declaration\n"); }
+    tVAR tIDENTIFIER tCOLON tFLOAT_TYPE tSEMICOLON { printf("found a float declaration: %s\n", $2); } |
+    tVAR tIDENTIFIER tCOLON tINT_TYPE tSEMICOLON { printf("found an int declaration: %s\n", $2); } |
+    tVAR tIDENTIFIER tCOLON tSTRING_TYPE tSEMICOLON { printf("found a string declaration: %s\n", $2); }
     ;
 
 stmt:
-    tINT    { printf("found a statement\n"); }
+    assignment | funccall | whileloop | condblock
+    ;
+
+assignment:
+    tIDENTIFIER tASSIGN expr tSEMICOLON { printf("found an assignment\n"); }
+    ;
+
+funccall:
+    tREAD tIDENTIFIER tSEMICOLON { printf("found a call to read\n"); } |
+    tPRINT expr tSEMICOLON { printf("found a call to print\n"); }
+
+expr:
+    expr tPLUS term { printf("found an addition\n"); } |
+    expr tMINUS term { printf("found a subtraction\n"); } |
+    term
+    ;
+
+term:
+    term tTIMES factor { printf("found a multiplication\n"); } |
+    term tDIVIDE factor { printf("found a division\n"); } |
+    factor
+    ;
+
+factor:
+    tIDENTIFIER | tFLOAT | tINT | tSTRING | tLPAREN expr tRPAREN { printf("found a factor\n"); }
+    ;
+
+whileloop:
+    tWHILE expr tDO stmts tDONE
+    ;
+
+condblock:
+    ifblock elseblock tENDIF
+    ;
+
+ifblock:
+    tIF expr tTHEN stmts
+    ;
+
+elseblock:
+    tELSE stmts | /*epsilon*/
     ;
 
 %%

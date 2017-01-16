@@ -1007,7 +1007,7 @@ YY_RULE_SETUP
 case 26:
 YY_RULE_SETUP
 #line 33 "scanner.l"
-{ /*printf("found an identifier: %s\n", yytext);*/ return tIDENTIFIER; }
+{ /*printf("found an identifier: %s\n", yytext);*/ yylval.sval = strdup(yytext); return tIDENTIFIER; }
 	YY_BREAK
 case 27:
 /* rule 27 can match eol */
@@ -1029,7 +1029,7 @@ case 29:
 /* rule 29 can match eol */
 YY_RULE_SETUP
 #line 41 "scanner.l"
-{ ; /*return tENDL*/ }
+{ ; /*return tENDL;*/ }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP

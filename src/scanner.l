@@ -30,7 +30,7 @@ read                { /*printf("found a 'read'\n");*/ return tREAD; }
 "="                 { /*printf("found an assignment operator\n");*/ return tASSIGN; }
 [0-9]+\.[0-9]+      { /*printf("found a float: %s\n", yytext);*/ yylval.fval = atof(yytext); return tFLOAT; }
 0|[1-9][0-9]*       { /*printf("found an int: %s\n", yytext);*/ yylval.ival = atoi(yytext); return tINT; }
-[a-zA-z_][a-zA-z_0-9]*  { /*printf("found an identifier: %s\n", yytext);*/ return tIDENTIFIER; }
+[a-zA-z_][a-zA-z_0-9]*  { /*printf("found an identifier: %s\n", yytext);*/ yylval.sval = strdup(yytext); return tIDENTIFIER; }
 \"(?:\\.|[^"\\])*\"     {
                       /*printf("found a string: %s\n", yytext);*/
                       // we have to copy because we can't rely on yytext not changing underneath us:
@@ -38,6 +38,6 @@ read                { /*printf("found a 'read'\n");*/ return tREAD; }
                       return tSTRING;
 }
 \/\/.*              { ; /*printf("found a single-line comment: %s\n", yytext);*/ }
-\n                  { ; /*return tENDL*/ }
+\n                  { ; /*return tENDL;*/ }
 
 %%

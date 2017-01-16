@@ -68,9 +68,10 @@ extern int yydebug;
     tLPAREN = 278,
     tRPAREN = 279,
     tIDENTIFIER = 280,
-    tINT = 281,
-    tFLOAT = 282,
-    tSTRING = 283
+    tENDL = 281,
+    tINT = 282,
+    tFLOAT = 283,
+    tSTRING = 284
   };
 #endif
 /* Tokens.  */
@@ -97,9 +98,10 @@ extern int yydebug;
 #define tLPAREN 278
 #define tRPAREN 279
 #define tIDENTIFIER 280
-#define tINT 281
-#define tFLOAT 282
-#define tSTRING 283
+#define tENDL 281
+#define tINT 282
+#define tFLOAT 283
+#define tSTRING 284
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -112,7 +114,7 @@ union YYSTYPE
 	float fval;
 	char *sval;
 
-#line 116 "y.tab.h" /* yacc.c:1915  */
+#line 118 "y.tab.h" /* yacc.c:1915  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

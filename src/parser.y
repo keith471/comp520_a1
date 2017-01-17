@@ -116,7 +116,7 @@ int main(int argc, char* argv[]) {
     if (argc == 2) {
         fname = argv[1];
     } else {
-        fname = "test.min";
+        fname = "./src/test.min";
     }
 
     // open a file handle to the file to scan
@@ -133,10 +133,13 @@ int main(int argc, char* argv[]) {
     do {
         yyparse();
     } while (!feof(yyin));
+
+    printf("VALID\n");
 }
 
 void yyerror(const char *s) {
 	printf("YIKES, parse error on line %d, before %s. Message: %s\n", yylineno, yytext, s);
+    printf("INVALID\n");
 	// exit on parse error
 	exit(1);
 }

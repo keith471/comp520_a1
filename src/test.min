@@ -1,10 +1,12 @@
-var name:
-string; var age: int;
+var name: string;
+var age: int;
 var height: float;
 
 name = "keith";
-age = 23;
+age = -23;
 height = 6.2;
+
+height = 6.2+-4.4;
 
 read name;
 print age;
@@ -15,10 +17,12 @@ print age;
 
 if (3+4) then
     // age = 23;
-
-
-while x do
-    // eat shit
-done
+    while x do
+        // eat shit
+    done
+else
+    //cool
 
 endif
+
+print ((((1))));

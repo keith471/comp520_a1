@@ -71,7 +71,8 @@ extern int yydebug;
     tENDL = 281,
     tINT = 282,
     tFLOAT = 283,
-    tSTRING = 284
+    tSTRING = 284,
+    UMINUS = 285
   };
 #endif
 /* Tokens.  */
@@ -102,19 +103,20 @@ extern int yydebug;
 #define tINT 282
 #define tFLOAT 283
 #define tSTRING 284
+#define UMINUS 285
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE YYSTYPE;
 union YYSTYPE
 {
-#line 14 "parser.y" /* yacc.c:1915  */
+#line 15 "parser.y" /* yacc.c:1915  */
 
 	int ival;
 	float fval;
 	char *sval;
 
-#line 118 "y.tab.h" /* yacc.c:1915  */
+#line 120 "y.tab.h" /* yacc.c:1915  */
 };
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1

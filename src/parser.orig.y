@@ -1,3 +1,5 @@
+// uses factors and terms rather than precedence rules
+
 %{
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,7 +9,6 @@ extern int yylex();
 extern int yyparse();
 extern FILE *yyin;
 extern int yylineno;
-extern char* yytext;
 
 void yyerror(const char *s);
 %}
@@ -39,8 +40,6 @@ void yyerror(const char *s);
 
 %start prog
 
-%left tMINUS tPLUS
-%left tTIMES tDIVIDE
 %left UMINUS
 
 %%
@@ -79,16 +78,20 @@ funccall:
     tPRINT expr tSEMICOLON { printf("found a call to print\n"); }
 
 expr:
-    tIDENTIFIER |
-    tFLOAT |
-    tINT |
-    tSTRING |
-    tLPAREN expr tRPAREN |
-    expr tPLUS expr { printf("found an addition\n"); } |
-    expr tMINUS expr { printf("found a subtraction\n"); } |
-    expr tTIMES expr { printf("found a multiplication\n"); } |
-    expr tDIVIDE expr { printf("found a division\n"); } |
-    tMINUS expr %prec UMINUS { printf("found a unary minus\n"); }
+    expr tPLUS term { printf("found an addition\n"); } |
+    expr tMINUS term { printf("found a subtraction\n"); } |
+    tMINUS expr %prec UMINUS |
+    term
+    ;
+
+term:
+    term tTIMES factor { printf("found a multiplication\n"); } |
+    term tDIVIDE factor { printf("found a division\n"); } |
+    factor
+    ;
+
+factor:
+    tIDENTIFIER | tFLOAT | tINT | tSTRING | tLPAREN expr tRPAREN { printf("found a factor\n"); }
     ;
 
 whileloop:
@@ -136,7 +139,7 @@ int main(int argc, char* argv[]) {
 }
 
 void yyerror(const char *s) {
-	printf("YIKES, parse error on line %d, before %s. Message: %s\n", yylineno, yytext, s);
+	printf("YIKES, parse error on line %d. Message: %s\n", yylineno, s);
 	// exit on parse error
 	exit(1);
 }

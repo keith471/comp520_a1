@@ -1,0 +1,21 @@
+./programs/invalid/err1.min: found the declarations
+found a string declaration: name
+found an int declaration: age
+YIKES, parse error on line 5, before #. Message: #
+INVALID
+./programs/invalid/err2.min: found the declarations
+found the statements
+done with a MiniLang file!
+VALID
+./programs/invalid/err3.min: found the declarations
+found the statements
+done with a MiniLang file!
+VALID
+./programs/invalid/err4.min: found the declarations
+found the statements
+done with a MiniLang file!
+VALID
+./programs/invalid/err5.min: found the declarations
+found the statements
+done with a MiniLang file!
+VALID

@@ -1,4 +1,4 @@
-var name: string;
+var name#: string;
 var age: int;
 var height: float;
 

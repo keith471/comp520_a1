@@ -1,0 +1,21 @@
+./programs/valid/correct1.min: found the declarations
+found the statements
+done with a MiniLang file!
+VALID
+./programs/valid/correct2.min: found the declarations
+found an int declaration: numScoops
+found a float declaration: price_per_scoop
+found the statements
+found an assignment
+found a call to print
+found a call to read
+found the statements
+found a call to print
+found the statements
+found a call to print
+found a multiplication
+found an assignment
+found a call to print
+found a call to print
+done with a MiniLang file!
+VALID

@@ -4,7 +4,7 @@
 var numScoops: int;
 var price_per_scoop: float;
 
-price_per_scoop = 1.25
+price_per_scoop = 1.25;
 
 print "How many scoops of ice cream cones would you like?";
 read numScoops;

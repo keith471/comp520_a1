@@ -111,6 +111,14 @@ elseblock:
 
 int main(int argc, char* argv[]) {
 
+#ifdef FLEX_DEBUG
+    // parse through the input until there is no more:
+    do {
+        yylex();
+    } while (!feof(yyin));
+#endif
+
+#ifndef FLEX_DEBUG
     // If file name passed, read from that file. Else, do nothing
     char* fname;
     if (argc == 2) {
@@ -135,6 +143,8 @@ int main(int argc, char* argv[]) {
     } while (!feof(yyin));
 
     printf("VALID\n");
+#endif
+
 }
 
 void yyerror(const char *s) {

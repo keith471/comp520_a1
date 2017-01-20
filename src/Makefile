@@ -8,6 +8,9 @@ CFLAGS = -Wall -ansi -pedantic
 all: y.tab.c lex.yy.c
 	$(CC) lex.yy.c y.tab.c -o out -ll
 
+flex_debug: y.tab.c lex.yy.c
+	$(CC) lex.yy.c y.tab.c -D FLEX_DEBUG -o flex -ll
+
 y.tab.c y.tab.h: parser.y
 	bison --yacc --defines parser.y
 
@@ -21,4 +24,4 @@ check:
 	./check
 
 clean:
-	rm y.tab.* lex.yy.*; rm scanner; rm out
+	rm y.tab.* lex.yy.*; rm scanner; rm out; rm flex
